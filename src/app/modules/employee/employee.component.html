@@ -1,0 +1,37 @@
+<div class="mt-4 p-5 bg-primary text-white rounded">
+    <h1>All the Employees</h1>
+    <p> 
+        Employees with the total number of absences (not days) per employee
+    </p>
+</div>
+<div class="alert alert-info mt-2">
+    Note: Please click on the employee to open list of the available absences.
+</div>
+<app-table *ngIf="(items$ | async ) as items">
+    <thead #thead>
+            <tr>
+                <th *ngFor="let head of ['Id', 'Employee Id', 'Name', 'Department', 'Absence Count']">
+                    {{head}}
+                </th>
+            </tr>
+    </thead>
+    <tbody #tbody>
+        <tr *ngFor="let item of items" (click)="open(item.employee)" role="button">
+            <td >
+                {{ item.employee.id }}
+            </td>
+            <td >
+                {{ item.employee.employeeNumber }}
+            </td>
+            <td>
+                {{item.employee.name }}
+            </td>
+            <td >
+                {{ item.employee.department }}
+            </td>
+            <td >
+                {{ item.absenceCount }}
+            </td>
+        </tr>
+    </tbody>
+</app-table>

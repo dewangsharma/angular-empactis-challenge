@@ -1,0 +1,42 @@
+<a [href]="'employee'">
+    Go back to List of Employees
+</a>
+<div class="mt-4 p-5 bg-primary text-white rounded" *ngIf="employee">
+    <h1>{{employee.name}}</h1>
+    <p>
+        <span>
+            Id: {{employee.id}}, 
+        </span>
+        <span>
+            EmployeeId: {{employee.employeeNumber}},
+        </span>
+        <span>
+            Department: {{employee.department}}
+        </span>
+    </p>
+</div>
+<div class="alert alert-info mt-2">
+    List of absences for the employee
+</div>
+<app-table>
+    <thead #thead>
+            <tr>
+                <th *ngFor="let head of ['Start', 'End', 'Type']">
+                    {{head}}
+                </th>
+            </tr>
+    </thead>
+    <tbody #tbody>
+        <tr *ngFor="let item of items">
+            <td >
+                {{ item.start | date }}
+            </td>
+            <td>
+                {{item.end | date }}
+            </td>
+            <td >
+                {{ item.type }}
+            </td>
+        </tr>
+    </tbody>
+</app-table>
